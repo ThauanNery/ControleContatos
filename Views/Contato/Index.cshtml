@@ -6,11 +6,29 @@
 
     
     <br/>
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">           
+            <button type="button" class="btn btn-danger  btn-close" arial-label="close"></button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert"> A simple danger alert—check it out!
+            <button type="button" class="btn btn-danger  btn-close" arial-label="close"></button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+   
+   <br/>
     <h1 class="display-4 text-start">Contatos</h1>
+
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <a class="btn btn-primary" role="button" asp-controller="Contato" asp-action="Create">Adicionar Contato</a>
     </div>
     <br/>
+
     <table id="tabela" class="table">
         <thead class="table-dark">
             <tr>

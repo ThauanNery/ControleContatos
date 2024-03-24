@@ -25,8 +25,22 @@ namespace ControleDeContatos.Controllers
         [HttpPost]
         public IActionResult Create(Contatos contatos)
         {
-            _contatoRepository.create(contatos);
-            return RedirectToAction("Index");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _contatoRepository.create(contatos);
+                    TempData["MensagemSucesso"] = "Contato cadastrado com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                TempData["MensagemErro"] = "Erro ao cadastrar o contato!";
+                return RedirectToAction("Index");
+            }
         }
 
         public IActionResult Edit(int id)
@@ -37,8 +51,23 @@ namespace ControleDeContatos.Controllers
         [HttpPost]
         public IActionResult update(Contatos contatos)
         {
-            _contatoRepository.update(contatos);
-            return RedirectToAction("Index");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _contatoRepository.update(contatos);
+                    TempData["MensagemSucesso"] = "Contato alterado com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View("Edit", contatos);
+            }
+            catch (Exception ex)
+            {
+                TempData["MensagemErro"] = "Erro ao alterar o contato!";
+                return RedirectToAction("Index");
+            }
+       
         }
 
         public IActionResult DeleteConfirmad(int id)
@@ -48,8 +77,29 @@ namespace ControleDeContatos.Controllers
         }
         public IActionResult Delete(int id)
         {
-            _contatoRepository.delete(id);
-            return RedirectToAction("Index");
+            try
+            {
+               
+                    bool apagado = _contatoRepository.delete(id);
+                    
+                    if(apagado)
+                    {
+                        TempData["MensagemSucesso"] = "Contato excluir com sucesso!";
+                    }
+                    else
+                    {
+                        TempData["MensagemErro"] = "Erro ao excluir o contato!";
+                    }
+                    return RedirectToAction("Index");
+
+            }
+            catch (Exception erro)
+            {
+
+                TempData["MensagemErro"] = "Erro ao excluir o contato!";
+                return RedirectToAction("Index");
+            }
+            
         }
 
 
