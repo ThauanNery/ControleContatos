@@ -4,14 +4,15 @@
 }
 <div class="text-center">
 
-    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+    
+    <br/>
+    <h1 class="display-4 text-start">Contatos</h1>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <a class="btn btn-primary" role="button" asp-controller="Contato" asp-action="Create">Adicionar Contato</a>
     </div>
     <br/>
-    <h1 class="display-4">Listagem de Contatos</h1>
-
-    <table class="table">
-        <thead class="thead-dark">
+    <table id="tabela" class="table">
+        <thead class="table-dark">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
@@ -21,7 +22,7 @@
                 <th scope="col"></th>
             </tr>
         </thead>
-        @* <tbody>
+        <tbody>
             @if(Model != null && Model.Any())
             {
                 foreach(Contatos contato in Model)
@@ -42,47 +43,7 @@
                     </tr>
                 }
             }
-        </tbody> *@
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark Polo</td>
-                <td>Rua ceu azul, 18, Salvador-BA</td>
-                <td>(71) 4002-8922</td>
-                <td>email@gmail.com</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <a role="button" class="btn btn-warning" asp-controller="Contato" asp-action="Edit">Editar</a>
-                        <a role="button" class="btn btn-danger" asp-controller="Contato" asp-action="Delete">Excluir</a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob Scoot</td>
-                <td>Rua ceu azul, 18, Salvador-BA</td>
-                <td>(71) 4002-8922</td>
-                <td>email@gmail.com</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <a role="button" class="btn btn-warning" asp-controller="Contato" asp-action="Edit">Editar</a>
-                        <a role="button" class="btn btn-danger" asp-controller="Contato" asp-action="Delete">Excluir</a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry Kane</td>
-                <td>Rua ceu azul, 18, Salvador-BA</td>
-                <td>(71) 4002-8922</td>
-                <td>email@gmail.com</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <a role="button" class="btn btn-warning" asp-controller="Contato" asp-action="Edit">Editar</a>
-                        <a role="button" class="btn btn-danger" asp-controller="Contato" asp-action="Delete">Excluir</a>
-                    </div>
-                </td>
-            </tr>
         </tbody>
+       
     </table>
 </div>

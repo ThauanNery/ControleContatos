@@ -1,7 +1,6 @@
 ﻿using ControleDeContatos.Models;
 using ControleDeContatos.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient.DataClassification;
 
 namespace ControleDeContatos.Controllers
 {
@@ -16,7 +15,7 @@ namespace ControleDeContatos.Controllers
         public IActionResult Index()
         {
            var listContatos = _contatoRepository.GetAll();
-            return View();
+            return View(listContatos);
         }
 
         public IActionResult Create()

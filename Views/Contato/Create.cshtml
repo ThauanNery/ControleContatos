@@ -7,6 +7,7 @@
     <h1 class="display-4">Cadastrar Contato</h1>
 
     <form asp-controller="Contato" asp-action="Create" method="post">
+
         <div class="form-group">
             <label for="nome">Nome</label>
             <input type="text" asp-for="Nome" class="form-control" >           
@@ -24,8 +25,8 @@
             <input type="email" asp-for="Email" class="form-control">
         </div>
         <br/>
-        <button type="submit" class="btn btn-primary">Adicionar</button>
-        <a class="btn btn-secondary" asp-controller="Contato" asp-action="Index"> Voltar</a>
+        <button type="submit" class="btn btn-primary" >Adicionar</button>
+        <a class="btn btn-secondary" asp-controller="Contato" asp-action="Index" role="button"> Voltar</a>
     </form>
 
 </div>

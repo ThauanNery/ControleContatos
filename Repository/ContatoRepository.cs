@@ -24,7 +24,7 @@ namespace ControleDeContatos.Repository
         public Contatos create(Contatos contatos)
         {
             _bancoContext.Contatos.Add(contatos);
-            _bancoContext.SaveChanges();
+            _bancoContext.SaveChangesAsync();
             return contatos;
         }
 

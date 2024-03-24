@@ -22,8 +22,8 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGF0b1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/CodigoTeste/GitClone/ControleContatos/Views/Contato/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGF0b1xEZWxldGUuY3NodG1s
+[E:/CodigoTeste/GitClone/ControleContatos/Views/Contato/DeleteConfirmad.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGF0b1xEZWxldGVDb25maXJtYWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/CodigoTeste/GitClone/ControleContatos/Views/Contato/Edit.cshtml]
