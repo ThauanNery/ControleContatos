@@ -1,11 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ControleDeContatos.Models;
+using ControleDeContatos.Repository;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient.DataClassification;
 
 namespace ControleDeContatos.Controllers
 {
     public class ContatoController : Controller
     {
+        private readonly IContatoRepository _contatoRepository;   
+        public ContatoController(IContatoRepository contatoRepository) 
+        {
+            _contatoRepository = contatoRepository;
+        }
+
         public IActionResult Index()
         {
+           var listContatos = _contatoRepository.GetAll();
             return View();
         }
 
@@ -13,15 +23,36 @@ namespace ControleDeContatos.Controllers
         {
             return View();
         }
-
-        public IActionResult Edit()
+        [HttpPost]
+        public IActionResult Create(Contatos contatos)
         {
-            return View();
+            _contatoRepository.create(contatos);
+            return RedirectToAction("Index");
         }
 
-        public IActionResult Delete()
+        public IActionResult Edit(int id)
         {
-            return View();
+           Contatos contato = _contatoRepository.GetId(id);
+            return View(contato);
         }
+        [HttpPost]
+        public IActionResult update(Contatos contatos)
+        {
+            _contatoRepository.update(contatos);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteConfirmad(int id)
+        {
+            Contatos contato = _contatoRepository.GetId(id);
+            return View(contato);
+        }
+        public IActionResult Delete(int id)
+        {
+            _contatoRepository.delete(id);
+            return RedirectToAction("Index");
+        }
+
+
     }
 }
