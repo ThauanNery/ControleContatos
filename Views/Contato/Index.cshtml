@@ -4,50 +4,49 @@
 }
 <div class="text-center">
 
-    
-    <br/>
+
+    <br />
     @if (TempData["MensagemSucesso"] != null)
     {
-        <div class="alert alert-success" role="alert">           
+        <div class="alert alert-success" role="alert">
             <button type="button" class="btn btn-danger  btn-close" arial-label="close"></button>
             @TempData["MensagemSucesso"]
         </div>
     }
     @if (TempData["MensagemErro"] != null)
     {
-        <div class="alert alert-danger" role="alert"> A simple danger alert—check it out!
+        <div class="alert alert-danger" role="alert">
             <button type="button" class="btn btn-danger  btn-close" arial-label="close"></button>
             @TempData["MensagemErro"]
         </div>
     }
-   
-   <br/>
+
+    <br />
     <h1 class="display-4 text-start">Contatos</h1>
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <a class="btn btn-primary" role="button" asp-controller="Contato" asp-action="Create">Adicionar Contato</a>
     </div>
-    <br/>
+    <br />
 
     <table id="tabela" class="table">
         <thead class="table-dark">
+
             <tr>
-               
-                <th scope="col">Nome</th>
-                <th scope="col">Endereço</th>
-                <th scope="col">Celular</th>
-                <th scope="col">E-mail</th>
-                <th scope="col"></th>
+                <th class="text-center" scope="col">Nome</th>
+                <th class="text-center" scope="col">Endereço</th>
+                <th class="text-center" scope="col">Celular</th>
+                <th class="text-center" scope="col">E-mail</th>
+                <th class="text-center" scope="col">Ações</th>
             </tr>
         </thead>
         <tbody>
-            @if(Model != null && Model.Any())
+            @if (Model != null && Model.Any())
             {
-                foreach(Contatos contato in Model)
+                foreach (Contatos contato in Model)
                 {
-
                     <tr>
-                        <th scope="row" hidden>@contato.Id</th>
+                        <input type="hidden" @contato.Id />
                         <td>@contato.Nome</td>
                         <td>@contato.Endereco</td>
                         <td>@contato.Celular</td>
@@ -55,13 +54,38 @@
                         <td>
                             <div class="btn-group" role="group">
                                 <a role="button" class="btn btn-warning" asp-route-id="@contato.Id" asp-controller="Contato" asp-action="Edit">Editar</a>
-                                <a role="button" class="btn btn-danger" asp-route-id="@contato.Id" asp-controller="Contato" asp-action="DeleteConfirmad">Excluir</a>
+                                <a role="button" class="btn btn-danger" asp-route-id="@contato.Id" data-toggle="modal" data-target="#myModal_@contato.Id">Excluir</a>
                             </div>
                         </td>
                     </tr>
+
+                    <div class="modal" id="myModal_@contato.Id">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Cabeçalho do Modal -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Excluir Contato</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Corpo do Modal -->
+                                <div class="modal-body">
+                                    <p>Deseja realmente excluir o contato de @contato.Nome ?</p>
+                                </div>
+
+                                <!-- Rodapé do Modal -->
+                                <div class="modal-footer">
+                                    <!-- Botão de cancelar -->
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <!-- Botão de confirmar -->
+                                    <a role="button" class="btn btn-danger" id="confirmDelete_@contato.Id" asp-route-id="@contato.Id" asp-controller="Contato" asp-action="Delete">Confirma</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 }
             }
         </tbody>
-       
     </table>
+
 </div>

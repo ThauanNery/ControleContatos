@@ -58,7 +58,7 @@ namespace ControleDeContatos.Controllers
                     _contatoRepository.update(contatos);
                     TempData["MensagemSucesso"] = "Contato alterado com sucesso!";
                     return RedirectToAction("Index");
-                }
+                }  
 
                 return View("Edit", contatos);
             }
@@ -70,13 +70,14 @@ namespace ControleDeContatos.Controllers
        
         }
 
-        public IActionResult DeleteConfirmad(int id)
-        {
-            Contatos contato = _contatoRepository.GetId(id);
-            return View(contato);
-        }
+        //public IActionResult DeleteConfirmad(int id)
+        //{
+        //    Contatos contato = _contatoRepository.GetId(id);
+        //    return View(contato);
+        //}
         public IActionResult Delete(int id)
         {
+
             try
             {
                

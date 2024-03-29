@@ -19,5 +19,23 @@ namespace ControleDeContatos.Models
         [Required(ErrorMessage = "Digite o E-mail do contato!")]
         [EmailAddress(ErrorMessage = "Digite o E-mail válido!")]
         public string Email { get; set; }
+
+        // Propriedade adicional apenas para exibição com máscara
+        public string CelularFormatado
+        {
+            get
+            {
+                // Verifica se o número de celular possui pelo menos 10 dígitos
+                if (!string.IsNullOrEmpty(Celular) && Celular.Length >= 10)
+                {
+                    // Aplica a máscara "(XX) XXXX-XXXX"
+                    return string.Format("({0}) {1}-{2}", Celular.Substring(0, 2), Celular.Substring(2, 4), Celular.Substring(6));
+                }
+                else
+                {
+                    return Celular; // Retorna o número sem modificação se não for possível aplicar a máscara
+                }
+            }
+        }
     }
 }
